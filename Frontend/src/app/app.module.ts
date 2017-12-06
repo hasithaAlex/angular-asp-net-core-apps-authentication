@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -15,13 +16,14 @@ import { AppComponent } from './app.component';
 import { MessageComponent } from './messages.component';
 import { WebService } from './web.service';
 import { NewMessagesComponent } from './new-massages.component';
-
+import { NavComponent } from './nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MessageComponent,
-    NewMessagesComponent
+    NewMessagesComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
