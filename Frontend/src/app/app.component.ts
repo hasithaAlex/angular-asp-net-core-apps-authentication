@@ -1,5 +1,6 @@
-import { MessageComponent } from './messages.component';
 import { Component } from '@angular/core';
+
+import { MessageComponent } from './messages.component';
 import { NavComponent } from './nav.component';
 
 @Component({
@@ -9,7 +10,4 @@ import { NavComponent } from './nav.component';
 })
 export class AppComponent {
   title = 'my app';
-
-
-
 }
