@@ -20,14 +20,19 @@ import { NewMessagesComponent } from './new-massages.component';
 import { NavComponent } from './nav.component';
 import { HomeComponent } from './home.component';
 
-var routes = [{
-  path: '',
-  component: HomeComponent
-},
-{
-  path: 'messages',
-  component: MessageComponent
-}
+var routes = [
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'messages',
+    component: MessageComponent
+  },
+  {
+    path: 'messages/:name',
+    component: MessageComponent
+  }
 ];
 
 @NgModule({

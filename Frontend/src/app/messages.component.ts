@@ -6,7 +6,7 @@ import { WebService } from './web.service';
   template: `
   <div *ngFor="let message of webService.messages">
     <mat-card class="card">
-     <mat-card-title> {{message.text}}</mat-card-title>
+     <mat-card-title [routerLink]="['/messages',message.owner]" style="cursor: pointer"> {{message.text}}</mat-card-title>
      <mat-card-content> by {{message.owner}} </mat-card-content>
     </mat-card>
   </div>
