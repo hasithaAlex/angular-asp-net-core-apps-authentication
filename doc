@@ -1,0 +1,8 @@
+============================================================
+--Install Angular Material and Angular CDK
+npm install --save @angular/material @angular/cdk
+
+--Install Animations
+npm install --save @angular/animations
+
+============================================================
