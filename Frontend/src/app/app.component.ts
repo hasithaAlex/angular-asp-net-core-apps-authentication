@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { MessageComponent } from './messages.component';
-import { NavComponent } from './nav.component';
+import { MessageComponent } from './message/messages.component';
+import { NavComponent } from './shared/nav.component';
 
 @Component({
   selector: 'app-root',

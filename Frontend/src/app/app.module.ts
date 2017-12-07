@@ -14,11 +14,11 @@ import {
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { MessageComponent } from './messages.component';
-import { WebService } from './web.service';
-import { NewMessagesComponent } from './new-massages.component';
-import { NavComponent } from './nav.component';
-import { HomeComponent } from './home.component';
+import { MessageComponent } from './message/messages.component';
+import { WebService } from './services/web.service';
+import { NewMessagesComponent } from './new-massages/new-massages.component';
+import { NavComponent } from './shared/nav.component';
+import { HomeComponent } from './home/home.component';
 
 var routes = [
   {

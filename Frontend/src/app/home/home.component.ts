@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { MessageComponent } from './messages.component';
-import { NewMessagesComponent } from './new-massages.component';
+import { MessageComponent } from './../message/messages.component';
+import { NewMessagesComponent } from './../new-massages/new-massages.component';
 
 @Component({
   selector: 'app-home',
