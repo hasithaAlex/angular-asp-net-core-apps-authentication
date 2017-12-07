@@ -19,6 +19,8 @@ import { WebService } from './services/web.service';
 import { NewMessagesComponent } from './new-massages/new-massages.component';
 import { NavComponent } from './shared/nav.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './Register/register.component';
+
 
 var routes = [
   {
@@ -32,6 +34,10 @@ var routes = [
   {
     path: 'messages/:name',
     component: MessageComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   }
 ];
 
@@ -41,7 +47,8 @@ var routes = [
     MessageComponent,
     NewMessagesComponent,
     NavComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

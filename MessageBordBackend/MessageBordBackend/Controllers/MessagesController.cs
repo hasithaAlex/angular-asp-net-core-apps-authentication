@@ -27,6 +27,11 @@ namespace MessageBordBackend.Controllers
         {
             return massages;            
         }
+        [HttpGet("{name}")]
+        public IEnumerable<Models.Message> Get(string name)
+        {
+            return massages.FindAll(massage => massage.Owner == name);
+        }
 
         [HttpPost]
         public Models.Message Post([FromBody] Models.Message message)
