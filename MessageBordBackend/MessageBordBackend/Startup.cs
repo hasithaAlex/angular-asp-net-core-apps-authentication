@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MessageBordBackend.Persistence;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace MessageBordBackend
 {
@@ -31,6 +34,8 @@ namespace MessageBordBackend
                     .AllowAnyHeader();
                 }));
             services.AddMvc();
+
+            services.AddDbContext<MessageDbContext>(options => options.UseSqlServer(Configuration["ConnectionString:MyConnection"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

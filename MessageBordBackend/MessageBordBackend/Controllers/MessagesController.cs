@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MessageBordBackend.Persistence;
 
 namespace MessageBordBackend.Controllers
 {
@@ -11,33 +12,32 @@ namespace MessageBordBackend.Controllers
     [Route("api/Messages")]
     public class MessagesController : Controller
     {
-        static List<Models.Message> massages = new List<Models.Message> {
-                new Models.Message{
-                    Owner = "Hasitha",
-                    Text = "hello"
-                },
-                new Models.Message{
-                    Owner = "John",
-                    Text = "hello"
-                }
-            };
 
+        private readonly MessageDbContext MessageDbContext;
+
+        public MessagesController(MessageDbContext messageDbContext)
+        {
+            this.MessageDbContext = messageDbContext;
+        }
+        
         //IEnumerable is help to pass a array
         public IEnumerable<Models.Message> Get()
         {
-            return massages;            
+            return MessageDbContext.Messages;            
         }
         [HttpGet("{name}")]
         public IEnumerable<Models.Message> Get(string name)
         {
-            return massages.FindAll(massage => massage.Owner == name);
+            return MessageDbContext.Messages
+                .Where(massage => massage.Owner == name);
         }
 
         [HttpPost]
         public Models.Message Post([FromBody] Models.Message message)
         {
-            massages.Add(message);
-            return message;
+            var dbMessage = MessageDbContext.Messages.Add(message).Entity;
+            MessageDbContext.SaveChanges();
+            return dbMessage;
         }
 
     }

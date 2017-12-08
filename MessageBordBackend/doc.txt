@@ -8,7 +8,7 @@ https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/new-db
 >Add-Migration InitialCreate
 >Update-Database
 
-
+>Remove-Migration
 =================================================================
 
 
