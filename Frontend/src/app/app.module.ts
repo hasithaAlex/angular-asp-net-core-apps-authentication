@@ -20,7 +20,7 @@ import { NewMessagesComponent } from './new-massages/new-massages.component';
 import { NavComponent } from './shared/nav.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './Register/register.component';
-
+import { AuthService } from './auth.service';
 
 var routes = [
   {
@@ -64,7 +64,8 @@ var routes = [
     ReactiveFormsModule
   ],
   providers: [
-    WebService
+    WebService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

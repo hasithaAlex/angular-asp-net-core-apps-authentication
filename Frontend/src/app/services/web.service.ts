@@ -13,7 +13,7 @@ export class WebService {
   messages = this.messageSubject.asObservable();
 
   constructor(private http: Http, private sb: MatSnackBar) {
-    this.getMessages();
+    this.getMessages('');
   }
 
   getMessages(user) {
