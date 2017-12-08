@@ -1,0 +1,21 @@
+=================================================================
+https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/new-db
+
+>Install-Package Microsoft.EntityFrameworkCore.SqlServer
+>Install-Package Microsoft.EntityFrameworkCore.Tools
+>Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
+
+>Add-Migration InitialCreate
+>Update-Database
+
+
+=================================================================
+
+
+
+
+
+
+
+
+=================================================================
