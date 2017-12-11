@@ -15,11 +15,13 @@ import {
 
 import { AppComponent } from './app.component';
 import { MessageComponent } from './message/messages.component';
-import { WebService } from './services/web.service';
 import { NewMessagesComponent } from './new-massages/new-massages.component';
 import { NavComponent } from './shared/nav.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './Register/register.component';
+import { LoginComponent } from './login/login.component';
+
+import { WebService } from './services/web.service';
 import { AuthService } from './auth.service';
 
 var routes = [
@@ -38,6 +40,10 @@ var routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 
@@ -48,7 +54,8 @@ var routes = [
     NewMessagesComponent,
     NavComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

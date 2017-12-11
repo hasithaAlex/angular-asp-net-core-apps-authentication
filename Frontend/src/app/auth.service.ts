@@ -19,18 +19,33 @@ export class AuthService {
     return !!localStorage.getItem(this.TOKEN_KEY);
   }
 
+  login(loginData) {
+    this.http.post(this.BASE_URL + '/login', loginData).subscribe(res => {
+      this.authenticate(res);
+    });
+  }
+
   register(user) {
     delete user.confirmPassword;
     this.http.post(this.BASE_URL + '/register', user).subscribe( res => {
-
-      var authResponce = res.json();
-
-      if(!authResponce.token)
-        return;
-
-      localStorage.setItem(this.TOKEN_KEY, authResponce.token);
-      localStorage.setItem(this.NAME_KEY, authResponce.firstName);
-      this.router.navigate(['/']);
+      this.authenticate(res);
     });
   }
+
+  logout() {
+    localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.NAME_KEY);
+  }
+
+  authenticate(res) {
+    var authResponce = res.json();
+
+    if(!authResponce.token)
+      return;
+
+    localStorage.setItem(this.TOKEN_KEY, authResponce.token);
+    localStorage.setItem(this.NAME_KEY, authResponce.firstName);
+    this.router.navigate(['/']);
+  }
 }
+
