@@ -10,7 +10,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MessageBordBackend.Persistence;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace MessageBordBackend
 {
@@ -33,6 +35,25 @@ namespace MessageBordBackend
                     .AllowAnyMethod()
                     .AllowAnyHeader();
                 }));
+
+            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is the secret phrase"));
+
+            services.AddAuthentication(options => {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer( cfg=> {
+                cfg.RequireHttpsMetadata = false;
+                cfg.SaveToken = true;
+                cfg.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    IssuerSigningKey = signingKey,
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    ValidateLifetime = false,
+                    ValidateIssuerSigningKey = true
+                };
+            });
+
             services.AddMvc();
 
             services.AddDbContext<MessageDbContext>(options => options.UseSqlServer(Configuration["ConnectionString:MyConnection"]));
@@ -46,6 +67,7 @@ namespace MessageBordBackend
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
             app.UseCors("Cors");
             app.UseMvc();
         }

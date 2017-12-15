@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import { MatSnackBar} from '@angular/material';
 import { Subject } from 'rxjs/Rx';
+import { AuthService } from './../auth.service';
 
 @Injectable()
 export class WebService {
@@ -12,7 +13,7 @@ export class WebService {
   private messageSubject = new Subject();
   messages = this.messageSubject.asObservable();
 
-  constructor(private http: Http, private sb: MatSnackBar) {
+  constructor(private http: Http, private sb: MatSnackBar, private auth: AuthService) {
     this.getMessages('');
   }
 
@@ -34,6 +35,14 @@ export class WebService {
     } catch (error) {
       this.handleError('Unable to save messages');
     }
+  }
+
+  getUser() {
+    return this.http.get(this.BASE_URL + '/Users/me', this.auth.tokenHeader).map(res => res.json());
+  }
+
+  SaveUser(userData) {
+    return this.http.post(this.BASE_URL + '/Users/me', userData, this.auth.tokenHeader).map(res => res.json());
   }
 
   private handleError(error) {

@@ -20,9 +20,11 @@ import { NavComponent } from './shared/nav.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './Register/register.component';
 import { LoginComponent } from './login/login.component';
+import { UserComponent } from './edit-user/edit-user.component';
 
 import { WebService } from './services/web.service';
 import { AuthService } from './auth.service';
+
 
 var routes = [
   {
@@ -44,6 +46,10 @@ var routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'user',
+    component: UserComponent
   }
 ];
 
@@ -55,7 +61,8 @@ var routes = [
     NavComponent,
     HomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

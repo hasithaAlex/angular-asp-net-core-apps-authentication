@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using MessageBordBackend.Persistence;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace MessageBordBackend.Controllers
 {
@@ -19,6 +22,8 @@ namespace MessageBordBackend.Controllers
         public string Email { get; set; }
         public string Password { get; set; }
     }
+
+
 
     [Produces("application/json")]
     [Route("auth")]
@@ -60,7 +65,13 @@ namespace MessageBordBackend.Controllers
 
         JwtPacket CreatejwtPacket(Models.User user)
         {
-            var jwt = new JwtSecurityToken();
+            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is the secret phrase"));
+            var signingCredentiols = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
+            var claims = new Claim[] 
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString())
+            };
+            var jwt = new JwtSecurityToken(claims: claims,signingCredentials: signingCredentiols);
             var encodedJwt = new JwtSecurityTokenHandler()
                 .WriteToken(jwt);
             return new JwtPacket()

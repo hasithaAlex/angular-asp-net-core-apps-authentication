@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-input-container  class="example-full-width">
+    <input style="width:350px"
+    matInput
+    placeholder="First Name"
+    [(ngModel)]="model.firstName">
+  </mat-input-container>
+
+  <mat-input-container  class="example-full-width">
+    <input style="width:350px"
+    matInput placeholder="Last Name"
+    [(ngModel)]="model.lastName">
+  </mat-input-container>
+<button mat-raised-button color="primary" (click)="saveUser(model)">Save Changes</button>
+</mat-card>
